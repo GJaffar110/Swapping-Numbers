@@ -1,0 +1,29 @@
+<project name="SwapProject" basedir="." default="run">
+    <!-- Set global properties for this build -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    
+    <!-- Create directories for compiled classes -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+    </target>
+    
+    <!-- Compile the source code -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+    </target>
+    
+    <!-- Run the compiled class -->
+    <target name="run" depends="compile">
+        <java classname="Swap" classpath="${classes.dir}">
+            <arg line=""/>
+        </java>
+    </target>
+    
+    <!-- Clean the build directory -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+</project>
